@@ -1,4 +1,4 @@
-from flask import Flask, Response, make_response, send_file, request
+from flask import Flask, Response, make_response, send_file, request, redirect
 import sqlite3, hashlib, datetime
 
 app = Flask(__name__, static_url_path="/images", static_folder="images", template_folder="templates")
@@ -89,14 +89,22 @@ def getUserName(request):
 Web View 部分
 """
 # 首頁網站
-@app.route("/")
+@app.route("/", methods=['GET'])
 def home():
     return send_file("templates/home.html")
 
 # 登入頁面
-@app.route("/login")
+@app.route("/login", methods=['GET'])
 def login():
     return send_file("templates/login.html")
+
+@app.route('/logout', methods=['GET'])
+def logout():
+    with sqlite3.connect("sqlite.db") as con:
+        session = request.cookies.get('session')
+        con.execute(f"DELETE FROM Session WHERE session='{session}'")
+        con.commit()
+        return redirect("/", code=302)
 
 
 if __name__ == "__main__":
