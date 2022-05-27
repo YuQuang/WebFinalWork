@@ -27,7 +27,7 @@ def getSingleHouseInfo(num):
 def postHouseInfo():
     return {"result": "success"}
 
-### 登入並取得登入Session
+### 登入並取得登入 Session
 @app.route('/login', methods=['POST'])
 def getLoginSession():
     # 取得帳號密碼
@@ -63,7 +63,6 @@ def getLoginSession():
         resp = make_response({"result": "success", "userName": userInfo[0][1]})
         resp.set_cookie('session', session)
         return resp
-
 def isLogin(request):
     # 檢查 session
     with sqlite3.connect("sqlite.db") as con:
@@ -72,6 +71,19 @@ def isLogin(request):
         userSession = res.fetchall()
         if(len(userSession) == 0): return False
         else: return True
+
+### 取得用戶資訊依照 Session
+@app.route('/userInfo', methods=['GET'])
+def getUserInfo():
+    if not isLogin(request): return {"result": "failed"}
+    return {"result": "success", "userInfo": getUserName(request)}
+def getUserName(request):
+    with sqlite3.connect("sqlite.db") as con:
+        session = request.cookies.get('session')
+        res = con.execute(f"SELECT session, user, date FROM Session WHERE session='{session}'")
+        userSession = res.fetchall()
+        if(len(userSession) == 0): return "None"
+        else: return userSession[0][1]
 
 """
 Web View 部分
