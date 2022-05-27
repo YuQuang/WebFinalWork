@@ -14,7 +14,7 @@
 - /login 登入頁面
 - /logout 登出頁面
 - /userInfo 登入可取得資訊
-- /houseInfo/<num> 根據編號查看房間資訊
+- /houseInfo/num:int 根據編號查看房間資訊
 
 ## 需要套件
 - Flask
