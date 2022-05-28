@@ -34,8 +34,8 @@ def postHouseInfo():
     price       = request.form.get('price')
     description = request.form.get('description')
 
-    if name == "": return {"result": "failed"}
-    if price == "": return {"result": "failed"}
+    if name == "": return {"result": "Name is empty"}
+    if price == "": return {"result": "Price is empty"}
     
     ### 檢查是否有圖片，無則使用預設
     if request.files.get("image") != None:
@@ -153,8 +153,8 @@ def search():
 def deleteHouse():
     return send_file("templates/deleteHouse.html")
 
-@app.route('/test', methods=['GET'])
-def test():
+@app.route('/add', methods=['GET'])
+def addHouseInfo():
     return send_file("templates/postHouseInfo.html")
 
 
