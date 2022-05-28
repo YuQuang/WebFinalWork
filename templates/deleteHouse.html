@@ -11,6 +11,8 @@
             <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
             <script src="https://unpkg.com/vue@next"></script>
+            <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
             <!--Replace with your tailwind.css once created-->
             <style>
                 @import url('https://fonts.googleapis.com/css?family=Lato');
@@ -143,10 +145,18 @@
                         });
                     },
                     deleteRoom(info){
-                        axios.delete('/houseInfo/'+info).then((response) => {
-                            alert(response.data.result);
-                            location.reload();
-                        });
+                        axios.delete('/houseInfo/'+info)
+                        .then(async function(response){
+                            if(response.data.result == 'success'){
+                                await Swal.fire('Perfect!', '<p style="color: #ffffff;">' + response.data.result + '</p>', 'success');
+                                location.reload();
+                            }else{
+                                Swal.fire('Oops!', '<p style="color: #ffffff;">' + response.data.result + '</p>', 'error');
+                            }
+                        })
+                        .catch((error)=>{
+                            Swal.fire('Oops!','<p style="color: #ffffff;">Something went worng!</p>','error');
+                        })
                     }
                 },
                 mounted(){
