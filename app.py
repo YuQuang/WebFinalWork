@@ -134,6 +134,11 @@ def search():
 def deleteHouse():
     return send_file("templates/deleteHouse.html")
 
+@app.route('/test', methods=['GET'])
+def test():
+    return send_file("templates/postHouseInfo.html")
+
+
 if __name__ == "__main__":
     app.debug = True
     app.run("127.0.0.1", "80")
