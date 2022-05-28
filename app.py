@@ -28,6 +28,15 @@ def postHouseInfo():
     
     return {"result": "success"}
 
+@app.route('/houseInfo/<num>', methods=['DELETE'])
+def deleteHouseInfo(num):
+    try:
+        with sqlite3.connect("sqlite.db") as con:
+            con.execute(f"DELETE FROM HouseInfo WHERE houseid={num}")
+            return {"result":"success"}
+    except Exception as e:
+        return {"result": "failed"}
+
 ### 登入並取得登入 Session
 @app.route('/login', methods=['POST'])
 def getLoginSession():
@@ -86,6 +95,7 @@ def getUserName(request):
         if(len(userSession) == 0): return "None"
         else: return userSession[0][1]
 
+
 """
 Web View 部分
 """
@@ -99,6 +109,7 @@ def home():
 def login():
     return send_file("templates/login.html")
 
+# 登出功能
 @app.route('/logout', methods=['GET'])
 def logout():
     with sqlite3.connect("sqlite.db") as con:
@@ -107,10 +118,16 @@ def logout():
         con.commit()
         return redirect("/", code=302)
 
+# 搜尋功能
 @app.route('/search', methods=['GET'])
 def search():
     return send_file("templates/search.html")
 
+# 刪除頁面
+@app.route('/delete', methods=['GET'])
+def deleteHouse():
+    if getUserName(request) != "user": return redirect("/")
+    return send_file("templates/deleteHouse.html")
 
 if __name__ == "__main__":
     app.debug = True
