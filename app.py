@@ -30,6 +30,8 @@ def getSingleHouseInfo(num):
 ### 新增房間資訊
 @app.route('/houseInfo', methods=['POST'])
 def postHouseInfo():
+    print(request.form)
+    print(request.files)
     return {"result": "success"}
 
 ### 刪除房間資訊 (目前只准 user 刪除)
