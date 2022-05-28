@@ -35,7 +35,7 @@ def postHouseInfo():
 ### 刪除房間資訊 (目前只准 user 刪除)
 @app.route('/houseInfo/<num>', methods=['DELETE'])
 def deleteHouseInfo(num):
-    if getUserName(request) != "user": {"result": "Permission Denied"}
+    if getUserName(request) != "user": return {"result": "Permission Denied"}
     try:
         with sqlite3.connect("sqlite.db") as con:
             con.execute(f"DELETE FROM HouseInfo WHERE houseid={num}")
