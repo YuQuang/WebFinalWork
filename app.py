@@ -1,7 +1,12 @@
-from flask import Flask, Response, make_response, send_file, request, redirect
+from flask import Flask, Response, make_response, render_template, send_file, request, redirect
 import sqlite3, hashlib, datetime
 
 app = Flask(__name__, static_url_path="/images", static_folder="images", template_folder="templates")
+
+
+@app.route('/statics/<file>', methods=['GET'])
+def statics(file):
+    return send_file('statics/' + file)
 
 """
 WebAPI 部分將資料傳送給前端
@@ -25,7 +30,6 @@ def getSingleHouseInfo(num):
 ### 新增房間資訊
 @app.route('/houseInfo', methods=['POST'])
 def postHouseInfo():
-    
     return {"result": "success"}
 
 ### 登入並取得登入 Session
@@ -110,6 +114,10 @@ def logout():
 @app.route('/search', methods=['GET'])
 def search():
     return send_file("templates/search.html")
+
+@app.route('/test', methods=['GET'])
+def test():
+    return send_file("templates/postHouseInfo.html")
 
 
 if __name__ == "__main__":
