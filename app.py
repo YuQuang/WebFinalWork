@@ -32,7 +32,7 @@ def getSingleHouseInfo(num):
 def postHouseInfo():
     print(request.form)
     print(request.files)
-    return {"result": "success"}
+    return {"result": "Name is empty"}
 
 ### 刪除房間資訊 (目前只准 user 刪除)
 @app.route('/houseInfo/<num>', methods=['DELETE'])
