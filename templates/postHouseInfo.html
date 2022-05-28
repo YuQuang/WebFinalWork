@@ -17,26 +17,28 @@
                     <div class="form-items">
                         <h3>Register Today</h3>
                         <p>Fill in the data below.</p>
-                        <form action="/houseInfo" method="post">
+                        <form enctype="multipart/form-data" action="/houseInfo" method="post">
                             <div class="col-md-12">
-                               <input class="form-control" type="text" name="name" placeholder="房間名稱" required>
+                               <input type="text" name="name" placeholder="房間名稱" required>
                           
                             </div><br>
 
                             <div class="col-md-12">
-                                <input class="form-control" type="number" name="price" placeholder="$房間價格" required>
+                                <input type="text" name="price" placeholder="$房間價格" required>
                                 
                             </div><br>
 
 
                            <div class="col-md-12">
-                              <textarea class="form-control" type="text" name="description" placeholder="description" rows="7" maxlength="700"></textarea>
+                              <textarea  type="text" name="description" placeholder="description" rows="7" maxlength="700"></textarea>
                    
                            </div><br>
-        
-                          <input accept="image/*" type='file' id="imgInp" onchange="loadFile(event)"/>
+                           <div>
+                               Image 
+                          <input accept="image/*" type='file' id="imgInp" name="image" onchange="loadFile(event)"/>
                           <img id="blah" src="/images/Room1.jpg" alt="" width="300px" height="300px">
-                                                        
+                           </div>
+
                   
 
                             <div class="form-button mt-3">
