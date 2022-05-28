@@ -30,6 +30,8 @@ def getSingleHouseInfo(num):
 ### 新增房間資訊
 @app.route('/houseInfo', methods=['POST'])
 def postHouseInfo():
+    if getUserName(request) != "user": return {"result": "Permission Denied"}
+    
     name        = request.form.get('name')
     price       = request.form.get('price')
     description = request.form.get('description')
