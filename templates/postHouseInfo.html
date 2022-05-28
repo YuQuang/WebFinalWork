@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="/statics/form.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="form-body">
+        <div class="row">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Register Today</h3>
+                        <p>Fill in the data below.</p>
+                        <form>
+                            <div class="col-md-12">
+                               <input class="form-control" type="text" name="name" placeholder="Full Name" required>
+                          
+                            </div><br>
+
+                            <div class="col-md-12">
+                                <input class="form-control" type="number" name="price" placeholder="E-mail Address" required>
+                    
+                            </div><br>
+
+                           <div class="col-md-12">
+                                <select class="form-select mt-3" required>
+                                      <option selected disabled value="">Position</option>
+                                      <option value="jweb">Junior Web Developer</option>
+                                      <option value="sweb">Senior Web Developer</option>
+                                      <option value="pmanager">Project Manager</option>
+                               </select>
+                  
+                           </div><br>
+
+
+                           <div class="col-md-12">
+                              <input class="form-control" type="text" name="description" placeholder="description" required>
+                   
+                           </div><br>
+
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                          <img id="blah" src="/images/Room1.jpg" alt="" width="100px" height="100px">
+                            
+                          <input accept="image/*" type='file' id="imgInp" onchange="loadFile(event)"/>
+                        </div>
+                  
+
+                            <div class="form-button mt-3">
+                                <button id="submit" type="submit" class="btn btn-primary">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files
+            var name = document.getElementById("preview")
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
+</body>
+</html>
