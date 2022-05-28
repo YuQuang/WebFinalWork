@@ -10,7 +10,7 @@
 
 html, body {
     height: 100%;
-    background-color: rgb(61, 49, 126);
+    background-color: rgb(255, 255, 255);
     overflow: hidden;
 }
 
@@ -22,6 +22,7 @@ html, body {
       align-items: center;
       text-align: center;
       min-height: 100vh;
+      max-height: 600vh;
 }
 
 .form-holder .form-content {
@@ -40,7 +41,7 @@ html, body {
 }
 
 .form-content .form-items {
-    border: 3px solid #fff;
+    border: 3px solid rgb(0, 0, 0);
     padding: 40px;
     display: inline-block;
     width: 100%;
@@ -54,7 +55,7 @@ html, body {
 }
 
 .form-content h3 {
-    color: #fff;
+    color: rgb(0, 0, 0);
     text-align: left;
     font-size: 28px;
     font-weight: 600;
@@ -66,7 +67,7 @@ html, body {
 }
 
 .form-content p {
-    color: #fff;
+    color: rgb(0, 0, 0);
     text-align: left;
     font-size: 17px;
     font-weight: 300;
@@ -76,7 +77,7 @@ html, body {
 
 
 .form-content label, .was-validated .form-check-input:invalid~.form-check-label, .was-validated .form-check-input:valid~.form-check-label{
-    color: #fff;
+    color: rgb(0, 0, 0);
 }
 
 .form-content input[type=text], .form-content input[type=password], .form-content input[type=email], .form-content select {
@@ -87,9 +88,10 @@ html, body {
     outline: 0;
     border-radius: 6px;
     background-color: #fff;
+    border: 1px solid rgb(0, 0, 0);
     font-size: 15px;
     font-weight: 300;
-    color: #8D8D8D;
+
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     margin-top: 16px;
@@ -118,6 +120,7 @@ html, body {
     text-align: left;
     background-color: #fff;
     border: 0;
+    border: 1px solid rgb(0, 0, 0);
     font-size: 15px;
     font-weight: 300;
     color: #8D8D8D;
