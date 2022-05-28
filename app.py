@@ -33,13 +33,22 @@ def postHouseInfo():
     name        = request.form.get('name')
     price       = request.form.get('price')
     description = request.form.get('description')
-    postfile    = request.files['image']
-    filePath    = 'images/' + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S_") + postfile.filename
-    postfile.save(filePath)
+
+    if name == "": return {"result": "failed"}
+    if price == "": return {"result": "failed"}
+    
+    ### 檢查是否有圖片，無則使用預設
+    if request.files.get("image") != None:
+        postfile    = request.files['image']
+        filePath    = 'images/' + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S_") + postfile.filename
+        postfile.save(filePath)
+    else: filePath  = 'images/Room1.jpg'
+
     t = [name, price, description, '/'+filePath]
     with sqlite3.connect("sqlite.db") as con:
         con.execute(f"INSERT INTO houseInfo(name, price, description, image) VALUES (?, ?,?, ?)", t)
         con.commit()
+    
     return {"result": "success"}
 
 ### 刪除房間資訊 (目前只准 user 刪除)

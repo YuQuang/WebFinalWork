@@ -68,7 +68,7 @@
             bodyFormData.append('name', name);
             bodyFormData.append('price', price);
             bodyFormData.append('description', description);
-            bodyFormData.append('imageFile', imageFile);
+            bodyFormData.append('image', imageFile);
             console.log(bodyFormData)
             axios({
                 method: "post",
@@ -79,7 +79,7 @@
                 .then(function (response) {
                     //handle success
         
-                    swal("Perfect !","success");
+                    swal("Perfect!","success");
                     console.log(response);
                 })
                 .catch(function (response) {
