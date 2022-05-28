@@ -106,10 +106,10 @@ html, body {
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active{
-    background-color: #fff;
+    background-color: rgb(255, 1, 1);
     outline: none !important;
     border: none !important;
-     box-shadow: none;
+    box-shadow: none;
 }
 
 .form-content textarea {
