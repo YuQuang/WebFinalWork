@@ -157,6 +157,10 @@ def deleteHouse():
 def addHouseInfo():
     return send_file("templates/postHouseInfo.html")
 
+@app.route('/test', methods=['GET'])
+def test():
+    return send_file("templates/HouseInfo.html")
+
 
 if __name__ == "__main__":
     app.debug = True

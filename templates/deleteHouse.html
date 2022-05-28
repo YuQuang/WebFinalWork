@@ -11,6 +11,7 @@
             <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
             <script src="https://unpkg.com/vue@next"></script>
+            <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
             <!--Replace with your tailwind.css once created-->
             <style>
                 @import url('https://fonts.googleapis.com/css?family=Lato');
@@ -91,6 +92,7 @@
                 </div>
             </footer>
         </div>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
         <script>
             var navMenuDiv = document.getElementById("nav-content");
             var navMenu = document.getElementById("nav-toggle");
@@ -122,8 +124,7 @@
                 }
                 return false;
             }
-            
-            
+           
             const app = {
                 data () {
                     return {
@@ -143,8 +144,14 @@
                         });
                     },
                     deleteRoom(info){
-                        axios.delete('/houseInfo/'+info).then((response) => {
-                            alert(response.data.result);
+                        axios.delete('/houseInfo/'+info).then(async function (response) {
+                            await Swal.fire({
+                            icon: "success",
+                            title: '<p style="color:black">Perfect !</p>',
+                            text:'房間刪除成功 !',
+                            background: '#fff',
+                            confirmButtonText: '返回'
+                        })
                             location.reload();
                         });
                     }
