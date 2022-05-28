@@ -1,5 +1,5 @@
 from flask import Flask, Response, make_response, render_template, send_file, request, redirect
-import sqlite3, hashlib, datetime
+import sqlite3, hashlib, datetime, os
 
 app = Flask(__name__, static_url_path="/images", static_folder="images", template_folder="templates")
 
@@ -7,6 +7,8 @@ app = Flask(__name__, static_url_path="/images", static_folder="images", templat
 @app.route('/statics/<file>', methods=['GET'])
 def statics(file):
     return send_file('statics/' + file)
+
+admins = ['user', 'dawn']
 
 """
 WebAPI 部分將資料傳送給前端
@@ -30,6 +32,8 @@ def getSingleHouseInfo(num):
 ### 新增房間資訊
 @app.route('/houseInfo', methods=['POST'])
 def postHouseInfo():
+    if getUserName(request) not in admins: return {"result": "Permission Denied"}
+
     name        = request.form.get('name')
     price       = request.form.get('price')
     description = request.form.get('description')
@@ -54,7 +58,7 @@ def postHouseInfo():
 ### 刪除房間資訊 (目前只准 user 刪除)
 @app.route('/houseInfo/<num>', methods=['DELETE'])
 def deleteHouseInfo(num):
-    if getUserName(request) != "user": return {"result": "Permission Denied"}
+    if getUserName(request) not in admins: return {"result": "Permission Denied"}
     try:
         with sqlite3.connect("sqlite.db") as con:
             con.execute(f"DELETE FROM HouseInfo WHERE houseid={num}")
@@ -163,5 +167,5 @@ def test():
 
 
 if __name__ == "__main__":
-    app.debug = True
-    app.run("127.0.0.1", "80")
+    port = int(os.environ.get('PORT', 5000))
+    app.run("0.0.0.0", port)

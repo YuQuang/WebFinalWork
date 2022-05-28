@@ -78,6 +78,7 @@
                 url: "/houseInfo",
                 data: bodyFormData,
                 headers: { "Content-Type": "multipart/form-data" },
+                timeout: 4000
                 })
                 .then(async function (response) {
                     //handle success
