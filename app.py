@@ -1,5 +1,5 @@
 from flask import Flask, Response, make_response, render_template, send_file, request, redirect
-import sqlite3, hashlib, datetime
+import sqlite3, hashlib, datetime, os
 
 app = Flask(__name__, static_url_path="/images", static_folder="images", template_folder="templates")
 
@@ -159,5 +159,5 @@ def addHouseInfo():
 
 
 if __name__ == "__main__":
-    app.debug = True
-    app.run("0.0.0.0")
+    port = int(os.environ.get('PORT', 5000))
+    app.run("0.0.0.0", port)
