@@ -25,6 +25,7 @@ def getSingleHouseInfo(num):
 ### 新增房間資訊
 @app.route('/houseInfo', methods=['POST'])
 def postHouseInfo():
+    
     return {"result": "success"}
 
 ### 登入並取得登入 Session
@@ -105,6 +106,10 @@ def logout():
         con.execute(f"DELETE FROM Session WHERE session='{session}'")
         con.commit()
         return redirect("/", code=302)
+
+@app.route('/search', methods=['GET'])
+def search():
+    return send_file("templates/search.html")
 
 
 if __name__ == "__main__":
