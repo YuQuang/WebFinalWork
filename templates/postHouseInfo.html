@@ -64,11 +64,11 @@
             var name = document.getElementById("name").value
             var price = document.getElementById("price").value
             var description = document.getElementById("description").value
-            var imageFile = document.getElementById("imgInp").files[0]
+            var image= document.getElementById("imgInp").files[0]
             bodyFormData.append('name', name);
             bodyFormData.append('price', price);
             bodyFormData.append('description', description);
-            bodyFormData.append('imageFile', imageFile);
+            bodyFormData.append('image', image);
             console.log(bodyFormData)
             axios({
                 method: "post",
@@ -79,7 +79,7 @@
                 .then(function (response) {
                     //handle success
         
-                    swal("Perfect !","success");
+                    swal("Perfect !","房間儲存成功","success");
                     console.log(response);
                 })
                 .catch(function (response) {
