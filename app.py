@@ -30,6 +30,16 @@ def getSingleHouseInfo(num):
 ### 新增房間資訊
 @app.route('/houseInfo', methods=['POST'])
 def postHouseInfo():
+    name        = request.form.get('name')
+    price       = request.form.get('price')
+    description = request.form.get('description')
+    postfile    = request.files['image']
+    filePath    = 'images/' + datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S_") + postfile.filename
+    postfile.save(filePath)
+    t = [name, price, description, '/'+filePath]
+    with sqlite3.connect("sqlite.db") as con:
+        con.execute(f"INSERT INTO houseInfo(name, price, description, image) VALUES (?, ?,?, ?)", t)
+        con.commit()
     return {"result": "success"}
 
 ### 刪除房間資訊 (目前只准 user 刪除)

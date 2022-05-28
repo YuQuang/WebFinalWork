@@ -17,7 +17,7 @@
                     <div class="form-items">
                         <h3>Register Today</h3>
                         <p>Fill in the data below.</p>
-                        <form action="/houseInfo" method="post">
+                        <form  enctype="multipart/form-data" action="/houseInfo" method="post">
                             <div class="col-md-12">
                                <input class="form-control" type="text" name="name" placeholder="房間名稱" required>
                           
@@ -34,7 +34,7 @@
                    
                            </div><br>
         
-                          <input accept="image/*" type='file' id="imgInp" onchange="loadFile(event)"/>
+                          <input accept="image/*" type='file' id="imgInp" name="image" onchange="loadFile(event)"/>
                           <img id="blah" src="/images/Room1.jpg" alt="" width="300px" height="300px">
                                                         
                   
