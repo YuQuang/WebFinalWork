@@ -145,7 +145,9 @@ def logout():
         session = request.cookies.get('session')
         con.execute(f"DELETE FROM Session WHERE session='{session}'")
         con.commit()
-        return redirect("/", code=302)
+        resp = make_response(redirect("/", code=302))
+        resp.set_cookie("session", '', expires=0)
+        return resp
 
 # 搜尋功能
 @app.route('/search', methods=['GET'])
